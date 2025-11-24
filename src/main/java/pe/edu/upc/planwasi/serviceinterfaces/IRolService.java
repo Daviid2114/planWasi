@@ -8,6 +8,6 @@ public interface IRolService {
     public List<Rol> list();
     public void insert(Rol rol);
     public void update(Rol rol);
-    public void delete(Long idRol);
-    public Rol findById(Long idRol);
+    public void delete(int idRol);
+    public Rol listId(int idRol);
 }
