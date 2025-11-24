@@ -10,6 +10,7 @@ public class Rol implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRol;
+    @Column(name = "descripcionRol", nullable = false)
     private String descripcionRol;
 
     public Rol() {
