@@ -1,28 +1,16 @@
-package pe.edu.upc.planwasi.entities;
+package pe.edu.upc.planwasi.dtos;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-@Entity
-@Table(name="Seguro_Desgravament")
-public class SeguroDesgravamen {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class SeguroDesgravamenDTO {
+
     private Long IdSeguroDesgravament;
-    @Column(name="descripcion",nullable = false, length = 50)
     private String descripcion;
-    @Column(name="numeroCuotas",nullable = false, length = 50)
     private int numeroCuotas;
-    @Column(name="tasa",nullable = false)
     private float tasa;
-
-    public SeguroDesgravamen(Long idSeguroDesgravament, String descripcion, int numeroCuotas, float tasa) {
-        IdSeguroDesgravament = idSeguroDesgravament;
-        this.descripcion = descripcion;
-        this.numeroCuotas = numeroCuotas;
-        this.tasa = tasa;
-    }
-    public SeguroDesgravamen() {
-    }
 
     public Long getIdSeguroDesgravament() {
         return IdSeguroDesgravament;
