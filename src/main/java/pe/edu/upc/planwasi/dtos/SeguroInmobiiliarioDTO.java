@@ -5,12 +5,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.Arrays;
+
 public class SeguroInmobiiliarioDTO {
 
     private Long IdSeguroInmobiliario;
     private String descripcion;
     private int numeroCuotas;
     private float tasa;
+
 
     public Long getIdSeguroInmobiliario() {
         return IdSeguroInmobiliario;
