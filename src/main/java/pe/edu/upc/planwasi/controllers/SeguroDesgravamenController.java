@@ -4,9 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.planwasi.dtos.RolDTO;
 import pe.edu.upc.planwasi.dtos.SeguroDesgravamenDTO;
-import pe.edu.upc.planwasi.entities.Rol;
 import pe.edu.upc.planwasi.entities.SeguroDesgravamen;
 import pe.edu.upc.planwasi.serviceinterfaces.ISeguroDesgravamenService;
 
@@ -20,7 +18,6 @@ public class SeguroDesgravamenController {
     private ISeguroDesgravamenService seguroDesgravamenS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<SeguroDesgravamenDTO> list() {
         return seguroDesgravamenS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -34,20 +31,20 @@ public class SeguroDesgravamenController {
         SeguroDesgravamen sd = m.map(seguroDesgravamenDTO, SeguroDesgravamen.class);
         seguroDesgravamenS.insert(sd);
     }
-    @GetMapping("/{idSeguroDesgravamen}")
-    public SeguroDesgravamenDTO list(@PathVariable("idSeguroDesgravament") int idSeguroDesgravamen) {
+    @GetMapping("/{IdSeguroDesgravament}")
+    public SeguroDesgravamenDTO list(@PathVariable("IdSeguroDesgravament") int idSeguroDesgravamen) {
         ModelMapper m = new ModelMapper();
         SeguroDesgravamenDTO dto = m.map(seguroDesgravamenS.listId(idSeguroDesgravamen), SeguroDesgravamenDTO.class);
         return dto;
     }
-    @PostMapping
+    @PutMapping
     public void edit(@RequestBody SeguroDesgravamenDTO seguroDesgravamenDTO) {
         ModelMapper m = new ModelMapper();
         SeguroDesgravamen seguroDesgravamen = m.map(seguroDesgravamenDTO, SeguroDesgravamen.class);
         seguroDesgravamenS.update(seguroDesgravamen);
     }
-    @DeleteMapping("/{idSeguroDesgravamen}")
-    public void eliminar(@PathVariable("idSeguroDesgravament") int idSeguroDesgravament) {
+    @DeleteMapping("/{IdSeguroDesgravament}")
+    public void eliminar(@PathVariable("IdSeguroDesgravament") int idSeguroDesgravament) {
         seguroDesgravamenS.delete(idSeguroDesgravament);
     }
 

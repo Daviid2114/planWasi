@@ -5,9 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.planwasi.dtos.RolDTO;
 import pe.edu.upc.planwasi.dtos.SeguroInmobiiliarioDTO;
-import pe.edu.upc.planwasi.entities.Rol;
 import pe.edu.upc.planwasi.entities.SeguroDesgravamen;
 import pe.edu.upc.planwasi.entities.SeguroInmobiliario;
 import pe.edu.upc.planwasi.serviceinterfaces.ISeguroInmobiliarioService;
@@ -22,7 +20,6 @@ public class SeguroInmobiliarioController {
     private ISeguroInmobiliarioService siS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<SeguroInmobiiliarioDTO> listar() {
         return siS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -36,19 +33,19 @@ public class SeguroInmobiliarioController {
         siS.insert(a);
     }
 
-    @GetMapping("/{idSeguroInmobiliario}")
-    public RolDTO listarId(@PathVariable("idrol") int idRol) {
+    @GetMapping("/{IdSeguroInmobiliario}")
+    public SeguroInmobiiliarioDTO listarId(@PathVariable("IdSeguroInmobiliario") int IdSeguroInmobiliario) {
         ModelMapper m = new ModelMapper();
-        RolDTO dto = m.map(siS.listId(idRol), RolDTO.class);
+        SeguroInmobiiliarioDTO dto = m.map(siS.listId(IdSeguroInmobiliario), SeguroInmobiiliarioDTO.class);
         return dto;
     }
 
     @PutMapping
-    public void modificar(@org.springframework.web.bind.annotation.RequestBody SeguroInmobiiliarioDTO seguroInmobiiliarioDTO) {
+    public void modificar(@RequestBody SeguroInmobiiliarioDTO seguroInmobiiliarioDTO) {
         ModelMapper m = new ModelMapper();
         SeguroInmobiliario sI=m.map(seguroInmobiiliarioDTO, SeguroInmobiliario.class);
         siS.update(sI);
     }
-    @DeleteMapping("/idSeguroInmobiliario")
+    @DeleteMapping({"/{IdSeguroInmobiliario}"})
     public void eliminar (@PathVariable("IdSeguroInmobiliario")int idSeguroInmobiliario) {siS.delete(idSeguroInmobiliario);}
 }
