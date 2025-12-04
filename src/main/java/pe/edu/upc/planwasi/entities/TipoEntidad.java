@@ -10,4 +10,28 @@ public class TipoEntidad {
     private Long IdTipoEntidad;
     @Column(name = "nombreTipoEntidad", nullable = false, length = 50)
     private String nombreTipoEntidad;
+
+    public TipoEntidad() {
+    }
+
+    public TipoEntidad(Long idTipoEntidad, String nombreTipoEntidad) {
+        IdTipoEntidad = idTipoEntidad;
+        this.nombreTipoEntidad = nombreTipoEntidad;
+    }
+
+    public Long getIdTipoEntidad() {
+        return IdTipoEntidad;
+    }
+
+    public void setIdTipoEntidad(Long idTipoEntidad) {
+        IdTipoEntidad = idTipoEntidad;
+    }
+
+    public String getNombreTipoEntidad() {
+        return nombreTipoEntidad;
+    }
+
+    public void setNombreTipoEntidad(String nombreTipoEntidad) {
+        this.nombreTipoEntidad = nombreTipoEntidad;
+    }
 }
